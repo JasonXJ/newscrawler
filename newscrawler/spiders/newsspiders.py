@@ -41,13 +41,26 @@ class SimpleGeneralSpider(_MySpider):
         now = aware_utc_now()
         for item in response.selector.xpath('//item'):
             news_item = NewsItem()
-            news_item['url'] = item.xpath('./link/text()').extract()[0]
-            news_item['title'] = item.xpath('./title/text()').extract()[0]
-            news_item['description'] = item.xpath('./description/text()').extract()[0]
+            news_item['url'] = self.extract_url(item)
+            news_item['title'] = self.extract_title(item)
+            news_item['description'] = self.extract_description(item)
             # Make sure the publish date is in UTC.
-            news_item['pub_date'] = parsedate_to_datetime(item.xpath('./pubDate/text()').extract()[0]).astimezone(TZ_UTC)
+            news_item['pub_date'] = self.extract_utc_pub_date(item)
             news_item['crawl_time'] = now
             yield news_item
+
+    def extract_url(self, item):
+        return item.xpath('./link/text()').extract()[0]
+
+    def extract_title(self, item):
+        return item.xpath('./title/text()').extract()[0]
+
+    def extract_description(self, item):
+        return item.xpath('./description/text()').extract()[0]
+
+    def extract_utc_pub_date(self, item):
+        # Make sure the publish date is in UTC.
+        return parsedate_to_datetime(item.xpath('./pubDate/text()').extract()[0]).astimezone(TZ_UTC)
 
 
 class GeneralSpider(SimpleGeneralSpider):
