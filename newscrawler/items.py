@@ -8,5 +8,8 @@
 import scrapy
 
 class NewsItem(scrapy.Item):
+    url = scrapy.Field()
     title = scrapy.Field()
-    link = scrapy.Field()
+    description = scrapy.Field()
+    pub_date = scrapy.Field()
+    crawl_time = scrapy.Field()
