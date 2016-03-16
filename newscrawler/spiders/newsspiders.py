@@ -56,7 +56,11 @@ class SimpleGeneralSpider(_MySpider):
         return item.xpath('./title/text()').extract()[0]
 
     def extract_description(self, item):
-        return item.xpath('./description/text()').extract()[0]
+        description = item.xpath('./description/text()').extract()
+        if len(description) == 0:
+            return None
+        else:
+            return description[0]
 
     def extract_utc_pub_date(self, item):
         # Make sure the publish date is in UTC.

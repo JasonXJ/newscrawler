@@ -35,3 +35,5 @@ sources:
         - http://rss.cnn.com/rss/edition_tennis.rss
         - http://rss.cnn.com/rss/edition_travel.rss
         - http://rss.cnn.com/rss/cnn_latest.rss
+        # FOX news
+        - http://feeds.foxnews.com/foxnews/latest
