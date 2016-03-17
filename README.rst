@@ -11,7 +11,7 @@ The settings and configuration related to Scrapy is still located in files "scra
 config.yml
 ----------
 
-The format of "config.yml" is YAML. The field "sources" in the file control which spiders (see :module:`newscrawler.spiders.newsspiders`) and sources to used. For example, if the "sources" field is defined as::
+The format of "config.yml" is YAML. The field "sources" in the file control which spiders (see :mod:`newscrawler.spiders.newsspiders`) and sources to used. For example, if the "sources" field is defined as::
 
         sources:
             general:
@@ -23,7 +23,7 @@ Then, the spider "general" (see :class:`GeneralSpider`) will be used to crawl th
 Spiders
 =======
 
-Spiders are defined in :module:`newscrawler.spiders.newsspiders`. All spiders should be defined as subclasses of :class:`_MySpider` so that configuration in "config.yml" will be honored.
+Spiders are defined in :mod:`newscrawler.spiders.newsspiders`. All spiders should be defined as subclasses of :class:`_MySpider` so that configuration in "config.yml" will be honored.
 
 :class:`SimpleGeneralSpider` downloads rss pages and extracts news items. It is possible that for some website, this spider cannot correctly parse and extracts the items. In this case, we can write new sub-classes and override methods `extract_...`.
 
